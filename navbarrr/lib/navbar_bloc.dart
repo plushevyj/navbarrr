@@ -4,12 +4,10 @@ import 'package:navbarrr/navbar_states.dart';
 enum NavbarItems { Red, Green, Blue }
 
 class NavbarBloc extends Bloc<NavbarItems, NavbarState> {
-  @override
-  NavbarState get initialState => ShowRed();
+  NavbarBloc() : super(ShowRed());
 
   @override
-  Stream<NavbarState> mapEventToState(
-      NavbarState state, NavbarItems event) async* {
+  Stream<NavbarState> mapEventToState(NavbarItems event) async* {
     switch (event) {
       case NavbarItems.Blue:
         yield ShowBlue();
