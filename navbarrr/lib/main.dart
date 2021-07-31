@@ -32,6 +32,9 @@ class MyHomePage extends StatelessWidget {
           return buildHomepage(state.title, Colors.green, state.itemIndex);
         if (state is ShowRed)
           return buildHomepage(state.title, Colors.red, state.itemIndex);
+        return Center(
+          child: CircularProgressIndicator(),
+        );
       },
     );
   }
