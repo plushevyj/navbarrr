@@ -9,35 +9,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyHomePage(),
+      home: MyHomePage(
+        bloc: NavbarBloc(),
+      ),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({Key key, this.bloc}) : super(key: key);
 
-class _MyHomePageState extends State<MyHomePage> {
-  NavbarBloc _navbarBloc;
-
-  @override
-  void initState() {
-    super.initState();
-    _navbarBloc = NavbarBloc();
-  }
-
-  @override
-  void dispose() {
-    _navbarBloc.dispose();
-    super.dispose();
-  }
+  final NavbarBloc bloc;
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder(
-      bloc: _navbarBloc,
+      bloc: bloc,
       builder: (BuildContext context, NavbarState state) {
         if (state is ShowBlue)
           return buildHomepage(state.title, Colors.blue, state.itemIndex);
