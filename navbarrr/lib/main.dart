@@ -70,15 +70,15 @@ class _MyHomePageState extends State<MyHomePage> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.looks_one),
-            title: Text("Red"),
+            label: "Red",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.looks_two),
-            title: Text("Blue"),
+            label: "Blue",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.looks_3),
-            title: Text("Green"),
+            label: "Green",
           )
         ],
       ),
