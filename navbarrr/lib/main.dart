@@ -63,9 +63,9 @@ class _MyHomePageState extends State<MyHomePage> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: (index) {
-          if (index == 0) _navbarBloc.dispatch(NavbarItems.Red);
-          if (index == 1) _navbarBloc.dispatch(NavbarItems.Blue);
-          if (index == 2) _navbarBloc.dispatch(NavbarItems.Green);
+          if (index == 0) bloc.add(NavbarItems.Red);
+          if (index == 1) bloc.add(NavbarItems.Blue);
+          if (index == 2) bloc.add(NavbarItems.Green);
         },
         items: [
           BottomNavigationBarItem(
