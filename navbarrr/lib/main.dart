@@ -9,29 +9,45 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyHomePage(
-        bloc: NavbarBloc(),
+      home: BlocProvider(
+        create: (context) => NavbarBloc(),
+        child: MyHomePage(),
       ),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key key, this.bloc}) : super(key: key);
-
-  final NavbarBloc bloc;
+  const MyHomePage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final bloc = BlocProvider.of<NavbarBloc>(context);
+
     return BlocBuilder(
       bloc: bloc,
       builder: (BuildContext context, NavbarState state) {
         if (state is ShowBlue)
-          return buildHomepage(state.title, Colors.blue, state.itemIndex);
+          return buildHomepage(
+            state.title,
+            Colors.blue,
+            state.itemIndex,
+            bloc,
+          );
         if (state is ShowGreen)
-          return buildHomepage(state.title, Colors.green, state.itemIndex);
+          return buildHomepage(
+            state.title,
+            Colors.green,
+            state.itemIndex,
+            bloc,
+          );
         if (state is ShowRed)
-          return buildHomepage(state.title, Colors.red, state.itemIndex);
+          return buildHomepage(
+            state.title,
+            Colors.red,
+            state.itemIndex,
+            bloc,
+          );
         return Center(
           child: CircularProgressIndicator(),
         );
@@ -39,7 +55,8 @@ class MyHomePage extends StatelessWidget {
     );
   }
 
-  Scaffold buildHomepage(String title, Color color, int currentIndex) {
+  Scaffold buildHomepage(
+      String title, Color color, int currentIndex, NavbarBloc bloc) {
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
